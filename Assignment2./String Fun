@@ -1,1 +1,71 @@
+.......trim()........
+const str = " Misbah Nazir  ";
+console.log(str.trim()); 
+// Output: "Misbah Nazir"
 
+
+.....toLowerCase()......
+const str = "Misbah Nazir";
+console.log(str.toLowerCase());
+// Output: "misbah nazir"
+
+
+.......toUpperCase().....
+const str = "Misbah Nazir";
+console.log(str.toUpperCase()); 
+// Output: "MISBAH NAZIR"
+
+
+........substring().......
+const str = "Misbah Nazir";
+console.log(str.substring(6, 11));
+// Output: "Nazir"
+
+
+.......split()......
+const str = "Misbah Nazir";
+console.log(str.split(" ")); 
+// Output: ["Misbah", "Nazir"]
+
+
+........slice()........
+const str = "Misbah Nazir";
+console.log(str.slice(6, 11));
+// Output: "Nazir"
+
+
+........replace().......
+const str = "Misbah Nazir";
+console.log(str.replace("Nazir", "Mishi"));
+// Output: "Misbah Mishi"
+
+
+........lastIndexOf().....
+const str = "Misbah Nazir";
+console.log(str.lastIndexOf("l"));
+// Output: 11
+
+
+.........indexOf()......
+const str = "Misbah Nazir";
+console.log(str.indexOf("Nazir"));
+// Output: 5
+
+
+........includes()......
+const str = "Misbah Nazir";
+console.log(str.includes("Misbah"));
+// Output: true
+
+
+........concat().......
+const str1 = "Misbah";
+const str2 = "Nazir";
+console.log(str1.concat(" ", str2)); 
+// Output: "Misbah Nazir"
+
+
+........charAt()......
+const str = "Misbah Nazir";
+console.log(str.charAt(0)); 
+// Output: "M"
