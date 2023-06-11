@@ -1,14 +1,17 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const SignupScreen = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+ const [showPassword, setShowPassword] = useState(false);
+ 
   const handleSignup = async () => {
     if (password !== confirmPassword) {
       alert('Error, Passwords do not match.');
@@ -34,8 +37,12 @@ const SignupScreen = ({ navigation }) => {
     } catch (error) {
       console.log('Error during signup:', error);
     }
+    
   };
-
+ const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Signup</Text>
@@ -50,18 +57,39 @@ const SignupScreen = ({ navigation }) => {
         keyboardType="email-address"
         onChangeText={text => setEmail(text)}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={text => setPassword(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm Password"
-        secureTextEntry
-        onChangeText={text => setConfirmPassword(text)}
-      />
+
+       <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.passwordInput}
+          placeholder="Password"
+          secureTextEntry={!showPassword}
+          onChangeText={text => setPassword(text)}
+        />
+        <TouchableOpacity style={styles.passwordToggle} onPress={toggleShowPassword}>
+          <MaterialIcons
+            name={showPassword ? 'visibility' : 'visibility-off'}
+            size={24}
+            color="#888"
+          />
+        </TouchableOpacity>
+      </View>
+     
+ <View style={styles.confirmPasswordContainer}>
+        <TextInput
+          style={styles.passwordInput}
+          placeholder="confirmPassword"
+          secureTextEntry={!showPassword}
+          onChangeText={text => setConfirmPassword(text)}
+        />
+        <TouchableOpacity style={styles.passwordToggle} onPress={toggleShowPassword}>
+          <MaterialIcons
+            name={showPassword ? 'visibility' : 'visibility-off'}
+            size={24}
+            color="#888"
+          />
+        </TouchableOpacity>
+      </View>
+      
 
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Signup</Text>
@@ -93,6 +121,37 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     paddingHorizontal: 8,
   },
+   passwordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 40,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 4,
+    marginBottom: 8,
+    paddingHorizontal: 8,
+    
+  },
+  passwordInput: {
+    flex: 1,
+  },
+  passwordToggle: {
+    padding: 8,
+  },
+   confirmPasswordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 40,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 4,
+    marginBottom: 8,
+    paddingHorizontal: 8,
+    
+  },
+ 
   button: {
     backgroundColor: '#00203fff',
     paddingVertical: 12,
